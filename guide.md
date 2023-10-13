@@ -1,2 +1,0 @@
-- When firstly installing locally the project, make sure to run 'npm i' to install npm dependencies
-- To build the project, use 'npx gulp' command

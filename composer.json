@@ -1,0 +1,21 @@
+{
+    "name": "leona/jodori-drugstore",
+    "description": "Proyecto de Requerimientos de Software, II Semestre, 2023",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\": "./",
+            "Controllers\\": "./Controllers",
+            "Model\\": "./Models"
+        }
+    },
+    "authors": [
+        {
+            "name": "Leonardo Céspedes",
+            "email": "lecespedes@estudiantec.cr"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}

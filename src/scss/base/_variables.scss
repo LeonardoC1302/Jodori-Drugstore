@@ -1,25 +1,26 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+// Fuentes
+$fuente_principal: 'Poppins', sans-serif;
 
-// FONTS
-$main-font: 'Lato', sans-serif;
-
-// MQ
-$phone: 480px;
+// Tamaño de Media Queries
+$telefono: 480px;
 $tablet: 768px;
 $desktop: 1024px;
 
-// Colors
-$blackColor: #000000;
-$yellow: #E08709;;
-$green: #71B100;
-$white: #FFFFFF;
-$gray: #e1e1e1;
-$darkGray: #333333;
+// Colores
+$azul: #0833A2;
+$azul-oscuro: #042781;
+$naranja: #FF6C00;
+$rojo: #cb0000;
+$verde:#329f00;
+$negro: #1a1b15;
 
-$gap: 5rem;
+$blanco: #FFFFFF;
+$gris: #e1e1e1;
 
-// FONT WEIGHTS
-$thin: 300;
+$separacion: 5rem;
+
+// Fuentes
+$delgada: 300;
 $regular : 400;
 $bold: 700;
-$blackFont: 900
+$black: 900
