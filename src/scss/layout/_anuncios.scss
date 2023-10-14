@@ -17,10 +17,8 @@
 
 
 .anuncio{
+    border: 1px solid v.$gris;
     margin-bottom: 5rem;
-    .imagen-anuncio{
-        border: 1px solid v.$gris;
-    }
     .contenido-anuncio{
         p{
             margin: 0;
@@ -36,7 +34,7 @@
 }
 
 .ver-todos{
-    margin: 0 0 5rem 3rem;
+    margin: 0 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
