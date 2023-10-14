@@ -1,0 +1,53 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+@include m.tablet {
+    .contenedor-anuncios {
+        @include m.grid(3, 2rem);
+        max-width: 120rem;
+    }
+}
+
+.container-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.anuncio{
+    margin-bottom: 5rem;
+    .imagen-anuncio{
+        border: 1px solid v.$gris;
+    }
+    .contenido-anuncio{
+        p{
+            margin: 0;
+        }
+        padding: 2rem;
+        text-align: center;
+        .precio{
+            margin-top: 3rem;
+            color: v.$naranja;
+            font-weight: v.$bold;
+        }
+    }
+}
+
+.ver-todos{
+    margin: 0 0 5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    img {
+        width: 5rem; /* Adjust the width as needed */
+        height: 5rem; /* Adjust the height as needed */
+        margin-bottom: 1rem;
+    }
+    span{
+        color: v.$naranja;
+        text-align: center;
+    }
+}
