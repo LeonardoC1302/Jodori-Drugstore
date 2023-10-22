@@ -15,14 +15,14 @@
         margin: 1.5rem 0;
     }
 
-    &__label{
+    &__label, &__legend{
         display: block;
         font-size: 2.2rem;
         color: v.$naranja;
         font-weight: v.$bold;
     }
 
-    &__input, &__textarea{
+    &__input, &__textarea, &__select{
        border: none;
        background-color: v.$gris;
        border-radius: 1rem;
@@ -31,9 +31,13 @@
 
     &__submit {
         @include m.boton(v.$azul, v.$blanco, 2.5rem);
-        width: auto;
         align-self: center;
         margin: 1.5rem;
+    }
+
+    &__submit--orange{
+        @include m.boton(v.$naranja, v.$blanco, 0);
+        align-self: flex-start;
     }
 
     &__textarea{

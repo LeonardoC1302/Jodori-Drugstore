@@ -1,4 +1,5 @@
 @use 'variables' as v;
+@use 'mixins' as m;
 
 html {
     font-size: 62.5%;
@@ -45,4 +46,20 @@ img {
 .sm-container {
     width: min(95%, 80rem);
     margin: auto;
+}
+
+.orange-btn {
+    @include m.boton(v.$naranja, v.$blanco, 0);
+}
+
+.blue-btn {
+    @include m.boton(v.$azul, v.$blanco, 0);
+}
+
+.flex{
+    display: flex;
+}
+
+.image-small {
+    width: 20rem;
 }

@@ -5,6 +5,7 @@ require_once __DIR__ . '/../includes/app.php';
 use MVC\Router;
 use Controllers\PagesController;
 use Controllers\LoginController;
+use Controllers\ProductController;
 
 $router = new Router();
 
@@ -22,8 +23,13 @@ $router->get('/productos', [PagesController::class, 'productos']);
 $router->get('/categorias', [PagesController::class, 'categorias']);
 $router->get('/contacto', [PagesController::class, 'contacto']);
 
+// Admin
+$router->get('/admin', [ProductController::class, 'index']);
+$router->get('/admin/crear', [ProductController::class, 'crear']);
+$router->get('/admin/actualizar', [ProductController::class, 'actualizar']);
+$router->get('/admin/eliminar', [ProductController::class, 'eliminar']);
+$router->get('/admin/reporte', [ProductController::class, 'reporte']);
 
 
- 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
