@@ -18,11 +18,10 @@
 }
 
 
-@mixin boton($bgColor, $colorTexto) {
+@mixin boton($bgColor, $colorTexto, $br) {
     background-color: $bgColor;
-    padding: 1.5rem 4rem;
+    padding: 1.5rem 5rem;
     color: $colorTexto;
-    margin-top: 2rem;
     font-size: 2rem;
     font-weight: 400;
     display: inline-block;
@@ -34,6 +33,7 @@
     display: block;
     width: 100%;
     margin: 5rem 0;
+    border-radius: $br;
 
     @include tablet {
         width: auto;

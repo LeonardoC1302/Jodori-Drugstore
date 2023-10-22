@@ -13,6 +13,9 @@ $router->get('/', [PagesController::class, 'index']);
 
 
 $router->get('/login', [LoginController::class, 'index']);
+$router->get('/register', [LoginController::class, 'register']);
+$router->get('/forgot', [LoginController::class, 'forgot']);
+$router->get('/reset', [LoginController::class, 'reset']);
 
 $router->get('/carrito', [PagesController::class, 'carrito']);
 $router->get('/productos', [PagesController::class, 'productos']);

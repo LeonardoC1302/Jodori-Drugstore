@@ -29,3 +29,20 @@ a {
 img {
     max-width: 100%;
 }
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.sm-container {
+    width: min(95%, 80rem);
+    margin: auto;
+}
