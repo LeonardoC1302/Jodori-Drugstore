@@ -8,7 +8,31 @@
 }
 
 .products{
-
+    margin: 1rem 0 auto 0;
+    width: 100%;
+    border-spacing: 0;
+    thead{
+        background-color: v.$naranja;
+        th{
+            color: v.$blanco;
+            padding: 2rem;
+        }
+    }
+    tbody {
+        td{
+            margin: 2rem;
+            text-align: center;
+            font-weight: v.$bold;
+            color: v.$azul;
+            img{
+                display: block;
+                margin: 0 auto;
+            }
+        }
+    }
+    .table-image {
+        width: 10rem;
+    }
 }
 
 .create-form{

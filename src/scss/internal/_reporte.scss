@@ -1,0 +1,42 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.datos{
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem;
+    .dato{
+        width: 30rem;
+        padding: 0 1rem;
+        border: 1px solid v.$gris;
+        p{
+            color: v.$azul;
+            font-weight: v.$bold;
+            span{
+                display: block;
+                color: v.$naranja;
+            }
+        }
+    }
+}
+.report-title{
+    font-size: 2.5rem;
+    display: block;
+}
+.reporte{
+    padding: 0 3rem;
+    margin: 2rem 0;
+    h1{
+        font-size: 2.5rem;
+        display: block;
+    }
+    .grafico{
+        img{
+            height: 50rem;
+        }
+        display: flex;
+        justify-content: center;
+        gap: 5rem;
+        align-items: flex-end;
+    }
+}

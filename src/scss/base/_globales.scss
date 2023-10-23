@@ -55,6 +55,18 @@ img {
 .blue-btn {
     @include m.boton(v.$azul, v.$blanco, 0);
 }
+.red-btn-block {
+    @include m.boton(v.$rojo, v.$blanco, 0);
+    @include m.tablet {
+        width: 100%;
+    }
+    margin: 1rem 0;
+}
+
+.red-btn {
+    @include m.boton(v.$rojo, v.$blanco, 0);
+    margin: 1rem 0;
+}
 
 .flex{
     display: flex;
@@ -62,4 +74,8 @@ img {
 
 .image-small {
     width: 20rem;
+}
+
+.w-100 {
+    width: 100%;
 }
