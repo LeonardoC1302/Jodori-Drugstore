@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`users` (
   `admin` TINYINT NOT NULL,
   `verified` TINYINT NOT NULL,
   `token` VARCHAR(15) NOT NULL,
+  `phone` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE INDEX `userID_UNIQUE` (`userID` ASC) VISIBLE)
 ENGINE = InnoDB
