@@ -2,11 +2,14 @@
 namespace Controllers;
 
 use MVC\Router;
+use Model\Producto;
 
 
 class PagesController {
     public static function index(Router $router){
+        $productos = Producto::get(3);
         $router->render('pages/index', [
+            'productos' => $productos,
             'page' => 'inicio'
         ]);
     }

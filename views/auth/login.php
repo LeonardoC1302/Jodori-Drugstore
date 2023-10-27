@@ -1,6 +1,10 @@
+<?php 
+    include_once __DIR__ . "/../templates/alerts.php";
+?>
+
 <div class="sm-container">
     <h1 class="align-left">Iniciar Sesión</h1>
-    <form class="form">
+    <form method="POST" class="form">
         <div class="form__field">
             <label for="email" class="form__label">Correo Electrónico</label>
             <input class="form__input" type="email" placeholder="Tu Correo Electrónico" id="email" name="email">
