@@ -21,8 +21,13 @@
         </form>
 
         <div class="actions">
-            <a class="login" href="login">Iniciar Sesión</a>
-            <a class="carrito" href="carrito"> </a>
+            <?php if(!isset($_SESSION['login'])) { ?>
+                <a class="login" href="login">Iniciar Sesión</a>
+                <?php } else { ?>
+                    <a class="login" href="logout">Cerrar Sesión</a>
+                    <a class="login" href="cuenta">Mi Cuenta</a>
+                    <a class="carrito" href="carrito"> </a>
+            <?php } ?>
         </div>
     </header>
 
@@ -44,6 +49,7 @@
             <p class="copyright">Farmacia Jodori &copy. Todos los derechos reservados.</p>
         </div>
     </footer>
-            
+    
+    <script src='build/js/app.js'></script>
 </body>
 </html>

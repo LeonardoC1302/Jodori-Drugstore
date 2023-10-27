@@ -48,6 +48,8 @@ class Usuario extends ActiveRecord{
         }
         if(!$this->password){
             self::setAlerta('error', 'La contraseña es obligatoria');
+        } else if(strlen($this->password) < 6) {
+            self::$alertas['error'][] = 'The password must be at least 6 characters';
         }
 
         return self::$alertas;
@@ -101,5 +103,34 @@ class Usuario extends ActiveRecord{
     
     public function generateToken() {
         $this->token = uniqid();
+    }
+
+    public function validateEmail(){
+        if(!$this->email) {
+            self::$alertas['error'][] = 'El correo es obligatorio';
+        }else if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            self::$alertas['error'][] = 'El correo no es válido';
+        }
+        return self::$alertas;
+    }
+
+    public function validatePassword(){
+        if(!$this->password) {
+            self::$alertas['error'][] = 'La contraseña es olbigatoria';
+        }else if(strlen($this->password) < 6) {
+            self::$alertas['error'][] = 'La contraseña debe tener al menos 6 caracteres';
+        }
+        return self::$alertas;
+    }
+
+    public function comparePasswords($passwd1, $passwd2){
+        if($passwd1 != $passwd2){
+            self::setAlerta('error', 'Las contraseñas no son iguales');
+        }
+        $this->validatePassword();
+
+
+
+        return self::$alertas;
     }
 }

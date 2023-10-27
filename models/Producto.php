@@ -3,9 +3,9 @@ namespace Model;
 
 class Producto extends ActiveRecord{
     protected static $tabla = 'products';
-    protected static $columnasDB = ['productID', 'name', 'description', 'price', 'cantidad', 'imagen'];
+    protected static $columnasDB = ['id', 'name', 'description', 'price', 'cantidad', 'imagen'];
 
-    public $productID;
+    public $id;
     public $name;
     public $description;
     public $price;
@@ -13,7 +13,7 @@ class Producto extends ActiveRecord{
     public $imagen;
 
     public function __construct($args = []){
-        $this->productID = $args['productID'] ?? null;
+        $this->id = $args['id'] ?? null;
         $this->name = $args['name'] ?? '';
         $this->description = $args['description'] ?? '';
         $this->price = $args['price'] ?? '';

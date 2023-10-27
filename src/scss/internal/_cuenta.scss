@@ -22,7 +22,11 @@
         height: 15rem;
         background-size: 65%;
         padding: 0;
-    
+    }
+
+    .acciones-cuenta{
+        display: flex;
+        justify-content: space-between;
     }
 
 }

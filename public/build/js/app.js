@@ -1,0 +1,1 @@
+function startApp(){cart()}function cart(){document.querySelectorAll(".cart-button").forEach(t=>{t.addEventListener("click",t=>{addToCart(t.target.dataset.product)})})}function addToCart(t){alert("Se agregó el producto "+t+" al carrito")}document.addEventListener("DOMContentLoaded",()=>{startApp()});

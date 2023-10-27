@@ -1,6 +1,11 @@
+<?php 
+    include_once __DIR__ . "/../templates/alerts.php";
+?>
+
+<?php if(!$error) {?>
 <div class="sm-container">
     <h1 class="align-left">Reestablece tu Contraseña</h1>
-    <form class="form">
+    <form method="POST" class="form">
         <p class="form__description">Llena el siguiente formulario para reestablecer tu contraseña</p>
         <div class="form__field">
             <label for="password" class="form__label">Contraseña</label>
@@ -14,3 +19,7 @@
         <a href="/login" class="action align-center">¿Ya tienes una cuenta? <span>Iniciar Sesión</span></a>
     </form>
 </div>
+
+<?php } else{ ?>
+    <div class="space"></div>
+<?php } ?>

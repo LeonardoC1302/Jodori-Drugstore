@@ -3,6 +3,7 @@ namespace Controllers;
 
 use MVC\Router;
 use Model\Producto;
+use Model\Usuario;
 
 
 class PagesController {
@@ -20,7 +21,9 @@ class PagesController {
     }
 
     public static function productos(Router $router){
+        $productos = Producto::all();
         $router->render('pages/productos', [
+            'productos' => $productos,
             'page' => 'productos'
         ]);
     }
@@ -38,7 +41,12 @@ class PagesController {
     }
 
     public static function cuenta(Router $router){
+        isAuth();
+        $id = $_SESSION['userId'];
+        $user = Usuario::find($id);
+
         $router->render('pages/cuenta', [
+            'user' => $user,
         ]);
     }
 

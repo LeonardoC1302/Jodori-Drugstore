@@ -50,6 +50,7 @@ img {
 
 .orange-btn {
     @include m.boton(v.$naranja, v.$blanco, 0);
+    margin: 1rem 0;
 }
 
 .blue-btn {
@@ -78,4 +79,8 @@ img {
 
 .w-100 {
     width: 100%;
+}
+
+.space{
+    margin: auto;
 }

@@ -16,6 +16,8 @@ $router->get('/', [PagesController::class, 'index']);
 $router->get('/login', [LoginController::class, 'index']);
 $router->post('/login', [LoginController::class, 'index']);
 
+$router->get('/logout', [LoginController::class, 'logout']);
+
 $router->get('/mensaje', [LoginController::class, 'mensaje']);
 $router->get('/verificar', [LoginController::class, 'verificar']);
 

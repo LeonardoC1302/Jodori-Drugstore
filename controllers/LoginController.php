@@ -19,7 +19,7 @@ class LoginController {
                 if($user){
                     if($user->verificarPassword($auth->password)){
                         session_start();
-                        $_SESSION['userId'] = $user->userId;
+                        $_SESSION['userId'] = $user->id;
                         $_SESSION['username'] = $user->username;
                         $_SESSION['email'] = $user->email;
                         $_SESSION['login'] = true;
@@ -39,7 +39,6 @@ class LoginController {
 
         $alertas = Usuario::getAlertas();
         $router->render('auth/login', [
-            'user' => $auth,
             'alertas' => $alertas
         ]);
     }
@@ -76,12 +75,64 @@ class LoginController {
     }
 
     public static function forgot(Router $router){
+        $alertas = [];
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $auth = new Usuario($_POST);
+            $alertas = $auth->validateEmail();
+
+            if(empty($alertas)){
+                $user = Usuario::where('email', $auth->email);
+                if($user && $user->verified === "1"){
+                    $user->generateToken();
+                    $user->guardar();
+
+                    $mail = new Email($user->email, $user->name, $user->token);
+                    $mail->sendRecover();
+
+                    Usuario::setAlerta('success', 'Revisa tu correo para recuperar tu contraseña');
+                } else{
+                    Usuario::setAlerta('error', 'El usuario no existe o no está verificado');
+                }
+            }
+
+        }
+
+        $alertas = Usuario::getAlertas();
         $router->render('auth/forgot', [
+            'alertas' => $alertas
         ]);
     }
 
     public static function reset(Router $router){
+        $error = false;
+        $alertas = [];
+        $token = s($_GET['token'] ?? null);
+        $user = Usuario::where('token', $token);
+        if(empty($user) || $token === ''){
+            Usuario::setAlerta('error', 'Token Inválido');
+            $error = true;
+        }
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            
+            $password = new Usuario($_POST);
+            $alertas = $password->comparePasswords($_POST['password'], $_POST['password2']);
+
+            if(empty($alertas['error'])){
+                $user->password = $password->password;
+                $user->hashPassword();
+                $user->token = '';
+                $result = $user->guardar();
+                if($result){
+                    header('Location: /login');
+                }
+            }
+        }
+
+        $alertas = Usuario::getAlertas();
         $router->render('auth/reset', [
+            'alertas' => $alertas,
+            'error' => $error
         ]);
     }
 
@@ -108,6 +159,12 @@ class LoginController {
     public static function mensaje(Router $router){
         $router->render('auth/mensaje', [
         ]);
+    }
+
+    public static function logout(Router $router){
+        session_start();
+        $_SESSION = [];
+        header('Location: /');
     }
 
     
