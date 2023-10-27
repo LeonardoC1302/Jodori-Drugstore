@@ -16,6 +16,9 @@ $router->get('/', [PagesController::class, 'index']);
 $router->get('/login', [LoginController::class, 'index']);
 $router->post('/login', [LoginController::class, 'index']);
 
+$router->get('/mensaje', [LoginController::class, 'mensaje']);
+$router->get('/verificar', [LoginController::class, 'verificar']);
+
 $router->get('/register', [LoginController::class, 'register']);
 $router->post('/register', [LoginController::class, 'register']);
 

@@ -7,7 +7,7 @@
     <form method="POST" class="form">
         <div class="form__field">
             <label for="email" class="form__label">Correo Electrónico</label>
-            <input class="form__input" type="email" placeholder="Tu Correo Electrónico" id="email" name="email">
+            <input class="form__input" type="email" placeholder="Tu Correo Electrónico" id="email" name="email" value="<?php echo s($user->email) ?>">
         </div> <!-- /form__field -->
         <div class="form__field">
             <label for="password" class="form__label">Contraseña</label>
