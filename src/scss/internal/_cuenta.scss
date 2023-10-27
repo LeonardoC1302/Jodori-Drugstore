@@ -2,11 +2,14 @@
 @use 'base/mixins' as m;
 
 .info-cuenta{
-
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: auto 0;
 
+    .form-cuenta{
+        width: 40%;
+    }
 
     .imagen-cuenta{
         background-image: url('../img/person.png');
