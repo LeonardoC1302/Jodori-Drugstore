@@ -53,7 +53,7 @@ class LoginController {
             if(empty($alertas['error'])){
                 $result = $user->exists();
                 if($result->num_rows){
-                    Usuario::getAlertas();
+                    $alertas = Usuario::getAlertas();
                 } else{
                     $user->hashPassword();
                     $user->generateToken();
