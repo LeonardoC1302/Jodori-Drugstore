@@ -23,4 +23,6 @@ class LoginController {
         $router->render('auth/reset', [
         ]);
     }
+
+    
 }

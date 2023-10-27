@@ -4,7 +4,7 @@
         <form class="form">
             <div class="form__field">
                 <label for="name" class="form__label">Nombre Completo</label>
-                <input class="form__input" type="name" placeholder="Tu Nombre" id="name" name="name">
+                <input class="form__input" type="text" placeholder="Tu Nombre" id="name" name="name">
             </div> <!-- /form__field -->
             <div class="form__field">
                 <label for="email" class="form__label">Correo Electrónico</label>

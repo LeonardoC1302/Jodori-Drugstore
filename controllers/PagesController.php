@@ -33,4 +33,12 @@ class PagesController {
             'page' => 'contacto'
         ]);
     }
+
+    public static function cuenta(Router $router){
+        $router->render('pages/cuenta', [
+        ]);
+    }
+
+
+    
 }
