@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`users` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `userID_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -82,10 +83,11 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`products` (
   `description` VARCHAR(45) NOT NULL,
   `price` DECIMAL(10,2) NOT NULL,
   `cantidad` INT NOT NULL,
-  `image` VARCHAR(255) NOT NULL,
+  `imagen` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `productID_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
