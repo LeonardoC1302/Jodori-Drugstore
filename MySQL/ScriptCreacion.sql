@@ -38,10 +38,11 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`users` (
   `surname` VARCHAR(30) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(60) NOT NULL,
   `admin` TINYINT NOT NULL,
   `verified` TINYINT NOT NULL,
   `token` VARCHAR(15) NOT NULL,
+  `phone` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE INDEX `userID_UNIQUE` (`userID` ASC) VISIBLE)
 ENGINE = InnoDB
@@ -81,6 +82,7 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`products` (
   `description` VARCHAR(45) NOT NULL,
   `price` DECIMAL(10,2) NOT NULL,
   `cantidad` INT NOT NULL,
+  `image` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`productID`),
   UNIQUE INDEX `productID_UNIQUE` (`productID` ASC) VISIBLE)
 ENGINE = InnoDB
