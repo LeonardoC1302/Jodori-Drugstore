@@ -48,3 +48,16 @@
     gap: $espaciado;
     grid-template-columns: repeat($columnas, 1fr);
 }
+
+@mixin circulo($imagen){
+    background-image: url($imagen);
+    background-repeat: no-repeat;
+    background-position: center center;
+    //margin: 1rem;
+    background-color: v.$naranja;
+    border-radius: 10rem;
+    width: 15rem;
+    height: 15rem;
+    background-size: 65%;
+    padding: 0;
+}

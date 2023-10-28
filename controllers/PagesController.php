@@ -29,7 +29,9 @@ class PagesController {
     }
 
     public static function categorias(Router $router){
+        $productos = Producto::all();
         $router->render('pages/categorias', [
+            'productos' => $productos,
             'page' => 'categorias'
         ]);
     }
