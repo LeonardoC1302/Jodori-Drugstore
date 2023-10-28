@@ -30,7 +30,13 @@ $router->post('/forgot', [LoginController::class, 'forgot']);
 $router->get('/reset', [LoginController::class, 'reset']);
 $router->post('/reset', [LoginController::class, 'reset']);
 
-$router->get('/cuenta', [PagesController::class, 'cuenta']);
+$router->get('/cuenta', [LoginController::class, 'cuenta']);
+
+$router->get('/cuenta/actualizar', [LoginController::class, 'actualizarCuenta']);
+$router->post('/cuenta/actualizar', [LoginController::class, 'actualizarCuenta']);
+
+$router->get('/cuenta/eliminar', [LoginController::class, 'eliminarCuenta']);
+
 $router->get('/carrito', [PagesController::class, 'carrito']);
 $router->get('/productos', [PagesController::class, 'productos']);
 $router->get('/categorias', [PagesController::class, 'categorias']);

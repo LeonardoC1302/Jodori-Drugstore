@@ -29,7 +29,6 @@
             <label for="password" class="form__label">Contraseña</label>
             <input class="form__input" type="password" placeholder="Tu Contraseña" id="password" name="password" >
         </div> <!-- /form__field -->
-        <a href="/forgot" class="action align-right">¿Olvidaste tu Contraseña?</a>
         <input class="form__submit" type="submit" value="Ingresar">
         <a href="/login" class="action align-center">¿Ya tienes una cuenta? <span>Inicia Sesión</span></a>
     </form>

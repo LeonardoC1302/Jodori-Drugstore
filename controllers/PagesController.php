@@ -39,17 +39,4 @@ class PagesController {
             'page' => 'contacto'
         ]);
     }
-
-    public static function cuenta(Router $router){
-        isAuth();
-        $id = $_SESSION['userId'];
-        $user = Usuario::find($id);
-
-        $router->render('pages/cuenta', [
-            'user' => $user,
-        ]);
-    }
-
-
-    
 }

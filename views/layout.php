@@ -22,11 +22,11 @@
 
         <div class="actions">
             <?php if(!isset($_SESSION['login'])) { ?>
-                <a class="login" href="login">Iniciar Sesión</a>
+                <a class="login" href="/login">Iniciar Sesión</a>
                 <?php } else { ?>
-                    <a class="login" href="logout">Cerrar Sesión</a>
-                    <a class="login" href="cuenta">Mi Cuenta</a>
-                    <a class="carrito" href="carrito"> </a>
+                    <a class="login" href="/logout">Cerrar Sesión</a>
+                    <a class="login" href="/cuenta">Mi Cuenta</a>
+                    <a class="carrito" href="/carrito"> </a>
             <?php } ?>
         </div>
     </header>
@@ -34,11 +34,11 @@
     <nav class="navegacion">
         <a <?php if ($page == 'inicio') { echo 'class="active"'; } ?> href="/">
         Inicio</a>
-        <a <?php if ($page == 'productos') { echo 'class="active"'; } ?> href="productos">
+        <a <?php if ($page == 'productos') { echo 'class="active"'; } ?> href="/productos">
         Productos</a>
-        <a <?php if ($page == 'categorias') { echo 'class="active"'; } ?> href="categorias">
+        <a <?php if ($page == 'categorias') { echo 'class="active"'; } ?> href="/categorias">
         Categorías</a>
-        <a <?php if ($page == 'contacto') { echo 'class="active"'; } ?> href="contacto">
+        <a <?php if ($page == 'contacto') { echo 'class="active"'; } ?> href="/contacto">
         Contacto</a>
     </nav>
 

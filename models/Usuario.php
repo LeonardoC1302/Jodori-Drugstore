@@ -49,7 +49,7 @@ class Usuario extends ActiveRecord{
         if(!$this->password){
             self::setAlerta('error', 'La contraseña es obligatoria');
         } else if(strlen($this->password) < 6) {
-            self::$alertas['error'][] = 'The password must be at least 6 characters';
+            self::$alertas['error'][] = 'La contraseña debe tener al menos 6 caracteres';
         }
 
         return self::$alertas;
@@ -64,6 +64,23 @@ class Usuario extends ActiveRecord{
 
         if(!$this->password){
             self::setAlerta('error', 'La contraseña es obligatoria');
+        }
+
+        return self::$alertas;
+    }
+
+    public function validateUpdate(){
+        if(!$this->name){
+            self::setAlerta('error', 'El nombre es obligatorio');
+        }
+        if(!$this->surname){
+            self::setAlerta('error', 'El apellido es obligatorio');
+        }
+        if(!$this->phone){
+            self::setAlerta('error', 'El teléfono es obligatorio');
+        }
+        if(!$this->username){
+            self::setAlerta('error', 'El nombre de usuario es obligatorio');
         }
 
         return self::$alertas;
@@ -128,9 +145,6 @@ class Usuario extends ActiveRecord{
             self::setAlerta('error', 'Las contraseñas no son iguales');
         }
         $this->validatePassword();
-
-
-
         return self::$alertas;
     }
 }

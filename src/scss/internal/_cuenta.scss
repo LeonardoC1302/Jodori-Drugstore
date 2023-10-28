@@ -30,3 +30,19 @@
     }
 
 }
+
+.actualizar-cuenta{
+    .orange-btn{
+        width: 30rem;
+    }
+    .form__field{
+        input{
+            font-weight: v.$bold;
+            color: v.$azul;
+        }
+    }
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto auto auto;
+}

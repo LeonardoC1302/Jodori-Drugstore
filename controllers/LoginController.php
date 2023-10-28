@@ -167,5 +167,44 @@ class LoginController {
         header('Location: /');
     }
 
+    public static function cuenta(Router $router){
+        isAuth();
+        $id = $_SESSION['userId'];
+        $user = Usuario::find($id);
+
+        $router->render('pages/cuenta', [
+            'user' => $user,
+        ]);
+    }
+
+    public static function actualizarCuenta(Router $router){
+        isAuth();
+        $id = $_SESSION['userId'];
+        $user = Usuario::find($id);
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $user->sincronizar($_POST);
+            $alertas = $user->validateUpdate();
+            if(empty($alertas['error'])){
+                $user->guardar();
+                header('Location: /cuenta');
+            }
+        }
+
+        $router->render('pages/actualizarCuenta', [
+            'user' => $user,
+        ]);
+    }
+
+    public static function eliminarCuenta(Router $router){
+        $id = $_SESSION['userId'];
+        $user = Usuario::find($id);
+        $user->eliminar();
+
+        session_start();
+        $_SESSION = [];
+        header('Location: /');
+    }
+
     
 }

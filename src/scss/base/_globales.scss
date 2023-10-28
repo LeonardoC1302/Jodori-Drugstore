@@ -55,6 +55,7 @@ img {
 
 .blue-btn {
     @include m.boton(v.$azul, v.$blanco, 0);
+    margin: 1rem 0;
 }
 .red-btn-block {
     @include m.boton(v.$rojo, v.$blanco, 0);

@@ -2,7 +2,7 @@
 @use 'base/mixins' as m;
 .action {
     color: v.$azul;
-    margin: 0;
+    margin-bottom: 1rem;
     font-size: 1.6rem;
     span{
         color: v.$naranja;
