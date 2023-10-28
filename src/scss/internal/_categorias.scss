@@ -1,0 +1,50 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+
+
+.categorias{
+    display: flex;
+    justify-content: space-between;
+    background-color: v.$azul;
+
+    .categoria{
+        display: flex;
+        flex-direction: column;
+        p{
+            color: v.$blanco;
+            text-align: center;
+        }
+
+        padding: 3rem 3rem 1rem 3rem;
+
+    }
+    .cuidado-personal{
+        @include m.circulo('../img/cuidado-personal.png')
+
+    }
+
+    .dermatologia{
+        @include m.circulo('../img/dermatologia.png')
+    }
+
+    .tos-y-flema{
+        @include m.circulo('../img/tos-y-flema.png')
+    }
+
+    .anticonceptivos{
+        @include m.circulo('../img/anticonceptivos.png')
+    }
+
+    .vitaminas{
+        @include m.circulo('../img/vitaminas.png')
+    }
+
+    .niños{
+        @include m.circulo('../img/niños.png')
+    }
+
+    height: auto;
+
+}
