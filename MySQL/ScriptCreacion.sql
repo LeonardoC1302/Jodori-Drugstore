@@ -56,18 +56,18 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`cart` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `userid` INT NOT NULL,
+  `userId` INT NOT NULL,
   `active` TINYINT NOT NULL,
-  `promotionID` INT NOT NULL,
+  `promotionID` INT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `cartID_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_cart_users1_idx` (`userid` ASC) VISIBLE,
+  INDEX `fk_cart_users1_idx` (`userId` ASC) VISIBLE,
   INDEX `fk_cart_promotions1_idx` (`promotionID` ASC) VISIBLE,
   CONSTRAINT `fk_cart_promotions1`
     FOREIGN KEY (`promotionID`)
     REFERENCES `farmacia_jodori`.`promotions` (`id`),
   CONSTRAINT `fk_cart_users1`
-    FOREIGN KEY (`userid`)
+    FOREIGN KEY (`userId`)
     REFERENCES `farmacia_jodori`.`users` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -115,18 +115,18 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`productsxcart` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `cartid` INT NOT NULL,
-  `productid` INT NOT NULL,
+  `cartID` INT NOT NULL,
+  `productID` INT NOT NULL,
   `quantity` INT NOT NULL,
   `price` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_cart_has_products_products1_idx` (`productid` ASC) VISIBLE,
-  INDEX `fk_cart_has_products_cart1_idx` (`cartid` ASC) VISIBLE,
+  INDEX `fk_cart_has_products_products1_idx` (`productID` ASC) VISIBLE,
+  INDEX `fk_cart_has_products_cart1_idx` (`cartID` ASC) VISIBLE,
   CONSTRAINT `fk_cart_has_products_cart1`
-    FOREIGN KEY (`cartid`)
+    FOREIGN KEY (`cartID`)
     REFERENCES `farmacia_jodori`.`cart` (`id`),
   CONSTRAINT `fk_cart_has_products_products1`
-    FOREIGN KEY (`productid`)
+    FOREIGN KEY (`productID`)
     REFERENCES `farmacia_jodori`.`products` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

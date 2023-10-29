@@ -41,10 +41,10 @@
         </div> <!-- /form__field -->
         <div class="form__field">
             <label for="description" class="form__label">Descripción</label>
-            <textarea class="form__textarea" name="description" id="description" placeholder="Descripción del Producto"><?php echo$producto->description?>
+            <textarea class="form__textarea" name="description" id="description" placeholder="Descripción del Producto"><?php echo $producto->description?>
             </textarea>
         </div> <!-- /form__field -->
 
-        <input class="form__submit--orange" type="submit" value="Actualizar">
+        <input class="form__submit--orange" type="submit" value="Actualizar" onclick="return confirm('Está seguro que quiere guardar los cambios')">
     </form>
 </div>

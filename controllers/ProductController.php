@@ -39,7 +39,8 @@ class ProductController {
         }
         $router->render('admin/crear', [
             'categorias' => $categorias,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'producto' => $producto
         ]);
     }
     //Confirmacion de Agregar Producto
@@ -66,7 +67,7 @@ class ProductController {
             }
             
             $alertas = $producto->validate();
-            $alertas = $producto->validateCant();
+            $alertas = array_merge($alertas, $producto->validateCant());
             if(empty($alertas)){
                 $producto->guardar();
                 header('Location: /admin');

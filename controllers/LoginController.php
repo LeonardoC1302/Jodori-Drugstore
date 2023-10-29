@@ -61,7 +61,7 @@ class LoginController {
                 } else{
                     $user->hashPassword();
                     $user->generateToken();
-
+                    
                     $email = new Email($user->email, $user->name, $user->token);
                     $email->sendConfirmation();
 

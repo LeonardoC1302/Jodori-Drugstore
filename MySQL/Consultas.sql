@@ -14,7 +14,7 @@ VALUES
 INSERT INTO products (name, description, price, cantidad, imagen, categoryID)
 VALUES 
 ('Preservativos Durex Sabor Lizano', 'Mucho Sabor', 5000, 1, 'lizano.jpg', 1);
--- delete from products where id > 0;
--- alter table products auto_increment = 0;
+-- delete from categories where id = 3;
+-- alter table products auto_increment = 2;
 -- update users set verified = 1 where id = 3;
 -- update users set token = "" where id = 3;
