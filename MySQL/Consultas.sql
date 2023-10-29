@@ -2,6 +2,7 @@ use farmacia_jodori;
 
 select * from products;
 select * from users;
+select * from categories;
 
 insert into categories(tipo) values("Medicina");
 insert into categories(tipo) values("Dermatologia");

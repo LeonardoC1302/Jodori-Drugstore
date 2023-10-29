@@ -114,9 +114,12 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `farmacia_jodori`.`productsxcart`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`productsxcart` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `cartID` INT NOT NULL,
   `productID` INT NOT NULL,
-  PRIMARY KEY (`cartID`, `productID`),
+  `quantity` INT NOT NULL,
+  `price` DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (`id`),
   INDEX `fk_cart_has_products_products1_idx` (`productID` ASC) VISIBLE,
   INDEX `fk_cart_has_products_cart1_idx` (`cartID` ASC) VISIBLE,
   CONSTRAINT `fk_cart_has_products_cart1`
