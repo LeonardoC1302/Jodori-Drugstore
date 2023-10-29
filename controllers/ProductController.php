@@ -22,9 +22,9 @@ class ProductController {
         $categorias = Categorias::all();
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $producto = new Producto($_POST);
-            $imageName = md5(uniqid(rand(), true)) .  'jpg';
+            $imageName = md5(uniqid(rand(), true)) .  '.jpg';
             if($_FILES['imagen']){
-                $image = Image::make($_FILES['imagen'])->fit(800, 600);
+                $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 600);
                 $producto->setImage($imageName);
             }
             $alertas = $producto->validate();
@@ -33,7 +33,8 @@ class ProductController {
                     mkdir(IMAGES_DIR);
                 }
                 $image->save(IMAGES_DIR . $imageName);
-                debuguear($producto);
+                $producto->guardar();
+                header('Location: /admin');
             }
         }
         $router->render('admin/crear', [
