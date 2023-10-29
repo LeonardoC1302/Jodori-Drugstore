@@ -33,7 +33,10 @@
             </div>
             <p> <?php echo $producto->name; ?> </p>
             <p class="precio">₡<?php echo $producto->price; ?> I.V.A.I</p>
-            <button class="cart-button" type="button" id="addToCartButton" data-product=<?php echo $producto->id; ?>>Agregar al Carrito</button>
+            <form method="POST">
+                <input type="hidden" value="<?php echo $producto->id; ?>" id="producto" name="producto">
+                <button type="submit" class="cart-button" type="button" id="addToCartButton" data-product=<?php echo $producto->id; ?>>Agregar al Carrito</button>
+            </form>
         </div>
     <?php } ?>
 </div>

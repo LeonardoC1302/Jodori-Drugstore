@@ -23,7 +23,7 @@ class ProductController {
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $producto = new Producto($_POST);
             $imageName = md5(uniqid(rand(), true)) .  '.jpg';
-            if($_FILES['imagen']){
+            if($_FILES['imagen']['tmp_name']){
                 $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 600);
                 $producto->setImage($imageName);
             }

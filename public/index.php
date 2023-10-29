@@ -38,8 +38,14 @@ $router->post('/cuenta/actualizar', [LoginController::class, 'actualizarCuenta']
 $router->get('/cuenta/eliminar', [LoginController::class, 'eliminarCuenta']);
 
 $router->get('/carrito', [PagesController::class, 'carrito']);
+$router->post('/carrito', [PagesController::class, 'carrito']);
+
 $router->get('/productos', [PagesController::class, 'productos']);
+$router->post('/productos', [PagesController::class, 'productos']);
+
 $router->get('/categorias', [PagesController::class, 'categorias']);
+$router->post('/categorias', [PagesController::class, 'categorias']);
+
 $router->get('/contacto', [PagesController::class, 'contacto']);
 
 // Admin

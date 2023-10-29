@@ -3,6 +3,7 @@
 namespace Controllers;
 use MVC\Router;
 use Model\Usuario;
+use Model\Cart;
 use Classes\Email;
 
 class LoginController {
@@ -19,10 +20,14 @@ class LoginController {
                 if($user){
                     if($user->verificarPassword($auth->password)){
                         session_start();
+                        $cart = new Cart(['userID' => $user->id]);
+
                         $_SESSION['userId'] = $user->id;
                         $_SESSION['username'] = $user->username;
                         $_SESSION['email'] = $user->email;
                         $_SESSION['login'] = true;
+                        // $_SESSION['cart'] = $cart;
+                        $_SESSION['products'] = [];
 
                         if($user->admin == 1){
                             $_SESSION['admin'] = true;

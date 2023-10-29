@@ -1,0 +1,33 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.cart{
+    border-collapse: collapse;
+    tbody{
+        tr{
+            border-bottom: 1px solid v.$gris-oscuro;
+        }
+    }
+}
+
+.info-carrito{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 2rem 3rem 2rem 0;
+    p{
+        margin: 1rem;
+        color: v.$azul;
+        font-weight: v.$bold;
+        font-size: 2rem;
+        span{
+            color: v.$naranja;
+        }
+    }
+    .total{
+        font-size: 3rem;
+    }
+    .send-cart{
+        @include m.boton(v.$azul, v.$blanco, 5rem);
+    }
+}

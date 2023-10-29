@@ -36,3 +36,12 @@ function validateORredirect(string $url){
 
     return $id;
 }
+
+function inArray($element, $array){
+    foreach($array as $el){
+        if($el->id === $element->id){
+            return true;
+        }
+    }
+    return false;
+}
