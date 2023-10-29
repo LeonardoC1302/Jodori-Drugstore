@@ -38,4 +38,10 @@
 .create-form{
     width: min(95%, 80rem);
     margin: auto auto 5rem auto;
+    .form__field{
+        input, select, textarea{
+            color:v.$azul;
+            font-weight: v.$bold;
+        }
+    }
 }

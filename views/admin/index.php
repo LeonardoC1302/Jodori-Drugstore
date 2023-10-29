@@ -30,7 +30,7 @@
                     <input type="hidden" name="type" value="producto">
                     <input type="submit" class="red-btn-block" value="Eliminar">
                 </form>
-                <a href="/admin/actualizar" class="blue-btn">Actualizar</a>
+                <a href="/admin/actualizar?id=<?php echo $prod->id; ?>" class="blue-btn">Actualizar</a>
             </td>
         </tr>
         <?php } ?>

@@ -26,3 +26,13 @@ function isAdmin() : void{
         header('Location: /');
     }
 }
+
+function validateORredirect(string $url){
+    $id = $_GET['id'] ?? null;
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+    if(!$id) {
+        header("Location: $url");
+    }
+
+    return $id;
+}

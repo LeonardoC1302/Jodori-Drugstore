@@ -45,7 +45,17 @@ class ProductController {
 
     public static function actualizar(Router $router){
         isAdmin();
+        $id = validateORredirect('/admin');
+        $producto = Producto::find($id);
+        $alertas = Producto::getAlertas();
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            debuguear($_POST);
+        }
+
         $router->render('admin/actualizar', [
+            'producto' => $producto,
+            'alertas' => $alertas
         ]);
     }
 
