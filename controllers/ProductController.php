@@ -51,7 +51,14 @@ class ProductController {
 
     public static function eliminar(Router $router){
         isAdmin();
-        echo "Eliminar";
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            //debuguear($_POST['id']);
+            $id = $_POST['id'];
+            $producto = Producto::find($id); 
+            $producto->eliminar();
+        }
+        //falta una confirmacion de eliminar producto
+        header('Location: /admin');
     }
 
     public static function reporte(Router $router){
