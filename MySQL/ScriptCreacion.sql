@@ -75,6 +75,17 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
+-- Table `farmacia_jodori`.`categories`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`categories` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `tipo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `farmacia_jodori`.`products`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`products` (
@@ -84,8 +95,15 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`products` (
   `price` DECIMAL(10,2) NOT NULL,
   `cantidad` INT NOT NULL,
   `imagen` VARCHAR(255) NOT NULL,
+  `categoryID` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `productID_UNIQUE` (`id` ASC) VISIBLE)
+  UNIQUE INDEX `productID_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `fk_products_categories1_idx` (`categoryID` ASC) VISIBLE,
+  CONSTRAINT `fk_products_categories1`
+    FOREIGN KEY (`categoryID`)
+    REFERENCES `farmacia_jodori`.`categories` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb4

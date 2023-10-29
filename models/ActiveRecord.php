@@ -178,4 +178,21 @@ class ActiveRecord {
         return array_shift($result); // Get the first element of the array
     }
 
+    public function setImage($image){
+        // Delete the previous image
+        if(!is_null($this->id)){
+            $this->deleteImage();
+        }
+
+        if($image){
+            $this->imagen = $image;
+        }
+    }
+
+    public function deleteImage(){
+        $fileExists = file_exists(IMAGES_DIR . $this->imagen);
+        if($fileExists){
+            unlink(IMAGES_DIR . $this->imagen);
+        }
+    }
 }

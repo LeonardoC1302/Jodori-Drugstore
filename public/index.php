@@ -45,6 +45,9 @@ $router->get('/contacto', [PagesController::class, 'contacto']);
 // Admin
 $router->get('/admin', [ProductController::class, 'index']);
 $router->get('/admin/crear', [ProductController::class, 'crear']);
+
+$router->post('/admin/crear', [ProductController::class, 'crear']);
+
 $router->get('/admin/actualizar', [ProductController::class, 'actualizar']);
 $router->get('/admin/eliminar', [ProductController::class, 'eliminar']);
 $router->get('/admin/reporte', [ProductController::class, 'reporte']);

@@ -1,10 +1,14 @@
+<?php 
+    include_once __DIR__ . "/../templates/alerts.php";
+?>
+
 <h1>Crear Producto</h1>
 <div class="create-form">
     <div class="flex">
         <a href="/admin" class="orange-btn">Volver al Panel</a>
     </div>
 
-    <form class="form">
+    <form class="form" method="POST" enctype="multipart/form-data">
         <div class="form__field">
             <label for="name" class="form__label">Nombre del Producto</label>
             <input class="form__input" type="name" placeholder="Nombre del Producto" id="name" name="name">
@@ -14,13 +18,16 @@
             <input class="form__input" type="number" placeholder="Precio del Producto" id="price" name="price">
         </div> <!-- /form__field -->
         <div class="form__field">
-            <label for="image" class="form__label">Imagen</label>
-            <input class="form__input" type="file" id="image" name="image" accept="image/jpeg, image/png">
+            <label for="imagen" class="form__label">Imagen</label>
+            <input class="form__input" type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
         </div> <!-- /form__field -->
         <div class="form__field">
             <legend class="form__legend">Categoría</legend>
-            <select class="form__select" name="category" id="category">
+            <select class="form__select" name="categoryID" id="categoryID">
                 <option value="" disabled selected>-- Selecciona una Categoría --</option>
+                <?php foreach($categorias as $cat){ ?>
+                    <option value="<?php echo $cat->id ?>" > <?php echo $cat->tipo  ?> </option>
+                    <?php } ?>
             </select>
         </div> <!-- /form__field -->
         <div class="form__field">

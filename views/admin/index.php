@@ -17,42 +17,22 @@
     </thead>
 
     <tbody>
-        <!-- Meterlo en un for -->
+        <?php foreach ($productos as $prod){?>  
         <tr>
-            <td>1</td>
-            <td>Abrilar 100ml Jarabe Via Oral</td>
-            <td><img src="/images/abrilar.jpg" alt="Table Image" class="table-image"></td>
-            <td>₡5.300</td>
-            <td>Asma y Alergias</td>
+            <td><?php echo $prod->id ?></td>
+            <td><?php echo $prod->name ?></td>
+            <td><img src="/images/<?php echo $prod->imagen ?>" alt="Table Image" class="table-image"></td>
+            <td>₡<?php echo $prod->price ?></td>
+            <td><?php echo $prod->categoryID ?></td>
             <td>
                 <form method="POST" class="w-100" action="/admin/eliminar">
-                    <input type="hidden" name="id" value="1">
+                    <input type="hidden" name="id" value="<?php echo $prod->id ?>">
                     <input type="hidden" name="type" value="producto">
                     <input type="submit" class="red-btn-block" value="Eliminar">
                 </form>
                 <a href="/admin/actualizar" class="blue-btn">Actualizar</a>
             </td>
         </tr>
-        <!-- Hasta acá -->
-
-        <!-- Meterlo en un for -->
-        <tr>
-            <td>2</td>
-            <td>Cataflam D. 46.5mg Tableta Vía Oral</td>
-            <td><img src="/images/cataflam.jpg" alt="Table Image" class="table-image"></td>
-            <td>₡1.055</td>
-            <td>Dolor e Inflamación</td>
-            <td>
-                <form method="POST" class="w-100" action="/admin/eliminar">
-                    <input type="hidden" name="id" value="2">
-                    <input type="hidden" name="type" value="producto">
-                    <input type="submit" class="red-btn-block" value="Eliminar">
-                </form>
-                <a href="/admin/actualizar" class="blue-btn">Actualizar</a>
-            </td>
-        </tr>
-        <!-- Hasta acá -->
-
+        <?php } ?>
     </tbody>
-
 </table>
