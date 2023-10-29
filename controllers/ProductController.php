@@ -14,7 +14,7 @@ class ProductController {
             'productos' => $productos
         ]);
     }
-
+    
     public static function crear(Router $router){
         isAdmin();
         $producto = new Producto();
@@ -42,22 +42,44 @@ class ProductController {
             'alertas' => $alertas
         ]);
     }
+    //Confirmacion de Agregar Producto
 
     public static function actualizar(Router $router){
         isAdmin();
         $id = validateORredirect('/admin');
         $producto = Producto::find($id);
         $alertas = Producto::getAlertas();
-
+        $categorias = Categorias::all();
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            debuguear($_POST);
+
+            $producto->sincronizar($_POST);
+            if($_FILES['imagen']['name'] != ""){
+                $imageName = md5(uniqid(rand(), true)) .  '.jpg';
+                if($_FILES['imagen']){
+                    $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 600);
+                    $producto->setImage($imageName);
+                    if(!is_dir(IMAGES_DIR)){
+                        mkdir(IMAGES_DIR);
+                    }
+                    $image->save(IMAGES_DIR . $imageName);
+                }
+            }
+            
+            $alertas = $producto->validate();
+            $alertas = $producto->validateCant();
+            if(empty($alertas)){
+                $producto->guardar();
+                header('Location: /admin');
+            }
         }
 
         $router->render('admin/actualizar', [
             'producto' => $producto,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'categorias' => $categorias
         ]);
     }
+    //Confirmacion de actualizar producto
 
     public static function eliminar(Router $router){
         isAdmin();
@@ -67,9 +89,9 @@ class ProductController {
             $producto = Producto::find($id); 
             $producto->eliminar();
         }
-        //falta una confirmacion de eliminar producto
         header('Location: /admin');
     }
+    //falta una confirmacion de eliminar producto
 
     public static function reporte(Router $router){
         isAdmin();

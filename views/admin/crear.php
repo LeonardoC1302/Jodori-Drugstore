@@ -35,6 +35,6 @@
             <textarea class="form__textarea" name="description" id="description" placeholder="Descripción del Producto"></textarea>
         </div> <!-- /form__field -->
 
-        <input class="form__submit--orange" type="submit" value="Enviar">
+        <input class="form__submit--orange" type="submit" value="Crear">
     </form>
 </div>

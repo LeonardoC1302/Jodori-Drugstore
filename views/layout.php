@@ -40,6 +40,7 @@
         Categorías</a>
         <a <?php if ($page == 'contacto') { echo 'class="active"'; } ?> href="/contacto">
         Contacto</a>
+        <!-- Hacer icono de admin cuando esta logueado con admin -->
     </nav>
 
     <?php echo $contenido; ?>

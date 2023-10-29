@@ -11,6 +11,7 @@
             <th>Nombre</th>
             <th>Imagen</th>
             <th>Precio</th>
+            <th>Cantidad</th>
             <th>Categoría</th>
             <th>Acciones</th>
         </tr>
@@ -23,6 +24,7 @@
             <td><?php echo $prod->name ?></td>
             <td><img src="/images/<?php echo $prod->imagen ?>" alt="Table Image" class="table-image"></td>
             <td>₡<?php echo $prod->price ?></td>
+            <td> <?php echo $prod->cantidad ?> </td>
             <td><?php echo $prod->categoryID ?></td>
             <td>
                 <form method="POST" class="w-100" action="/admin/eliminar">
