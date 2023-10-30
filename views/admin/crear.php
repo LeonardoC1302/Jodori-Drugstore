@@ -11,11 +11,11 @@
     <form class="form" method="POST" enctype="multipart/form-data">
         <div class="form__field">
             <label for="name" class="form__label">Nombre del Producto</label>
-            <input class="form__input" type="name" placeholder="Nombre del Producto" id="name" name="name">
+            <input class="form__input" type="name" placeholder="Nombre del Producto" id="name" name="name" value="<?php echo $producto->name ?>">
         </div> <!-- /form__field -->
         <div class="form__field">
             <label for="price" class="form__label">Precio</label>
-            <input class="form__input" type="number" placeholder="Precio del Producto" id="price" name="price">
+            <input class="form__input" type="number" placeholder="Precio del Producto" id="price" name="price" value="<?php echo $producto->price ?>">
         </div> <!-- /form__field -->
         <div class="form__field">
             <label for="imagen" class="form__label">Imagen</label>
@@ -32,9 +32,9 @@
         </div> <!-- /form__field -->
         <div class="form__field">
             <label for="description" class="form__label">Descripción</label>
-            <textarea class="form__textarea" name="description" id="description" placeholder="Descripción del Producto"></textarea>
+            <textarea class="form__textarea" name="description" id="description" placeholder="Descripción del Producto"><?php echo $producto->description ?></textarea>
         </div> <!-- /form__field -->
 
-        <input class="form__submit--orange" type="submit" value="Crear">
+        <input class="form__submit--orange" type="submit" value="Crear" onclick="return confirm('Está seguro que quiere crear el producto')">
     </form>
 </div>

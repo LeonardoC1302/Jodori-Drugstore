@@ -1,6 +1,7 @@
 <div class="actions">
     <a href="/admin/crear" class="orange-btn">Nuevo Producto</a>
-    <a href="/admin/reporte" class="blue-btn">Generar Reporte</a>
+    <a href="/admin/asignar" class="blue-btn">Asginar Admin.</a>
+    <a href="/admin/reporte" class="orange-btn">Generar Reporte</a>
 </div>
 
 <h1>Productos</h1>
@@ -30,7 +31,7 @@
                 <form method="POST" class="w-100" action="/admin/eliminar">
                     <input type="hidden" name="id" value="<?php echo $prod->id ?>">
                     <input type="hidden" name="type" value="producto">
-                    <input type="submit" class="red-btn-block" value="Eliminar">
+                    <input type="submit" class="red-btn-block" value="Eliminar"onclick="return confirm('Está seguro que quiere eliminar este producto')">
                 </form>
                 <a href="/admin/actualizar?id=<?php echo $prod->id; ?>" class="blue-btn">Actualizar</a>
             </td>

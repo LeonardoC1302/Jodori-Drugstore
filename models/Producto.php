@@ -50,5 +50,6 @@ class Producto extends ActiveRecord{
         if($this->cantidad && $this->cantidad <= 0){
             self::setAlerta('error', 'La cantidad debe ser mayor a 0');
         }
+        return self::$alertas;
     }
 }

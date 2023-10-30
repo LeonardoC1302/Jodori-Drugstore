@@ -50,18 +50,19 @@ $router->get('/contacto', [PagesController::class, 'contacto']);
 
 // Admin
 $router->get('/admin', [ProductController::class, 'index']);
-$router->get('/admin/crear', [ProductController::class, 'crear']);
 
+$router->get('/admin/crear', [ProductController::class, 'crear']);
 $router->post('/admin/crear', [ProductController::class, 'crear']);
 
 $router->get('/admin/actualizar', [ProductController::class, 'actualizar']);
 $router->post('/admin/actualizar', [ProductController::class, 'actualizar']);
 
-// $router->get('/admin/eliminar', [ProductController::class, 'eliminar']);
 $router->post('/admin/eliminar', [ProductController::class, 'eliminar']);
 
-$router->get('/admin/reporte', [ProductController::class, 'reporte']);
+$router->get('/admin/asignar', [ProductController::class, 'asignar']);
+$router->post('/admin/asignarAdmin', [ProductController::class, 'asignarAdmin']);
 
+$router->get('/admin/reporte', [ProductController::class, 'reporte']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
