@@ -6,6 +6,8 @@ use MVC\Router;
 use Model\Producto;
 use Model\Cart;
 use Model\productsxcart;
+use Model\Sale;
+use Model\productsxsale;
 use Model\Usuario;
 
 
@@ -19,53 +21,56 @@ class PagesController {
     }
 
     public static function carrito(Router $router){
-        $productos = [];
-        foreach($_SESSION['products'] as $product){
-            $producto = Producto::find($product);
-            $producto->cantidad = 1;
-            if(inArray($producto, $productos)){
-                $index = array_search($producto, $productos);
-                $cantidad = $productos[$index]->cantidad;
-                $productos[$index]->cantidad = $cantidad+1;
-            }else{
-                $productos[] = $producto;
-            }
-        }
+        $cart = Cart::where('userId', $_SESSION['userId']);
+        $productsXcart = productsxcart::whereAll('cartID', $cart->id);
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if($_POST['type'] === 'quitar'){
-                $productos = $_SESSION['products'];
-                foreach($productos as $producto){
-                    if($producto === $_POST['id']){
-                        $index = array_search($producto, $productos);
-                        unset($productos[$index]);
-                        break;
-                    }
+                $product = productsxcart::where('productID', $_POST['id']);
+                if($product->quantity > 1){
+                    $product->quantity -= 1;
+                    $product->price -= Producto::find($_POST['id'])->price;
+                    $product->guardar();
+                } else{
+                    $product->eliminar();
                 }
-                $_SESSION['products'] = $productos;
                 header('Location: /carrito');
             } else{
-                if(empty($_SESSION['products'])){
-                    header('Location: /carrito');
+                $monto = 0;
+                $products = [];
+                foreach($productsXcart as $productXcart){
+                    $monto += $productXcart->price;
                 }
-                $cart = new Cart($_SESSION);
-                $id = $cart->guardar()['id'];
-                foreach($productos as $producto){
-                    $productxcart = new productsxcart([
-                        'cartID' => $id,
-                        'productID' => $producto->id,
-                        'quantity' => $producto->cantidad,
-                        'price' => $producto->price * $producto->cantidad
+                $sale = new Sale([
+                    'description' => 'Venta de productos',
+                    'monto' => $monto,
+                    'discount' => 0,
+                    'userId' => $_SESSION['userId']
+                ]);
+                $result = $sale->guardar();
+                foreach($productsXcart as $product){
+                    $productXsale = new productsxsale([
+                        'salesID' => $result['id'],
+                        'productID' => $product->productID,
+                        'quantity' => $product->quantity,
+                        'price' => $product->price
                     ]);
-                    $productxcart->guardar();
+                    $productXsale->guardar();
+                    $product->eliminar();
                 }
-                $_SESSION['products'] = [];
+                
                 header('Location: /');
 
             }
         }
 
         $categorias = Categorias::all();
+        foreach($productsXcart as $productXcart){
+            $product = Producto::find($productXcart->productID);
+            $product->cantidad = $productXcart->quantity;
+            $product->price = $productXcart->price;
+            $productos[] = $product;
+        }
 
         $router->render('pages/carrito', [
             'productos' => $productos,
@@ -76,8 +81,30 @@ class PagesController {
     public static function productos(Router $router){
         $productos = Producto::all();
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            // only add if the product is not already in the cart
-            array_push($_SESSION['products'], $_POST['producto']);
+            if(!isset($_SESSION['userId'])){
+                header('Location: /login');
+            }
+            $cart = Cart::where('userId', $_SESSION['userId']);
+            $products = productsxcart::whereAll('cartID', $cart->id);
+            $exists = false;
+            foreach($products as $product){
+                if($product->productID == $_POST['producto']){
+                    $product->quantity += 1;
+                    $product->price += $product->price;
+                    $product->guardar();
+                    $exists = true;
+                    break;
+                }
+            }
+            if(!$exists){
+                $productxcart = new productsxcart([
+                    'cartID' => $cart->id,
+                    'productID' => $_POST['producto'],
+                    'quantity' => 1,
+                    'price' => Producto::find($_POST['producto'])->price
+                ]);
+                $productxcart->guardar();
+            }
             header('Location: /productos');
         }
         $router->render('pages/productos', [
@@ -89,7 +116,30 @@ class PagesController {
     public static function categorias(Router $router){
         $productos = Producto::all();
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            array_push($_SESSION['products'], $_POST['producto']);
+            if(!isset($_SESSION['userId'])){
+                header('Location: /login');
+            }
+            $cart = Cart::where('userId', $_SESSION['userId']);
+            $products = productsxcart::whereAll('cartID', $cart->id);
+            $exists = false;
+            foreach($products as $product){
+                if($product->productID == $_POST['producto']){
+                    $product->quantity += 1;
+                    $product->price += $product->price;
+                    $product->guardar();
+                    $exists = true;
+                    break;
+                }
+            }
+            if(!$exists){
+                $productxcart = new productsxcart([
+                    'cartID' => $cart->id,
+                    'productID' => $_POST['producto'],
+                    'quantity' => 1,
+                    'price' => Producto::find($_POST['producto'])->price
+                ]);
+                $productxcart->guardar();
+            }
             header('Location: /categorias');
         }
         $router->render('pages/categorias', [

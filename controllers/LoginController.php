@@ -5,6 +5,7 @@ use MVC\Router;
 use Model\Usuario;
 use Model\Cart;
 use Classes\Email;
+use Model\productsxcart;
 
 class LoginController {
     public static function index(Router $router){
@@ -20,14 +21,18 @@ class LoginController {
                 if($user){
                     if($user->verificarPassword($auth->password)){
                         session_start();
-                        $cart = new Cart(['userID' => $user->id]);
+                        $cart = Cart::find($user->id);
+                        if(!$cart){
+                            $cart = new Cart(['userId' => $user->id]);
+                            $cart->guardar();
+                        }
+
+
 
                         $_SESSION['userId'] = $user->id;
                         $_SESSION['username'] = $user->username;
                         $_SESSION['email'] = $user->email;
                         $_SESSION['login'] = true;
-                        // $_SESSION['cart'] = $cart;
-                        $_SESSION['products'] = [];
 
                         if($user->admin == 1){
                             $_SESSION['admin'] = true;

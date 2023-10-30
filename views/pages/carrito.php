@@ -53,7 +53,7 @@
         <?php 
             $total = 0;
             foreach($productos as $producto){
-                $total += $producto->price * $producto->cantidad;
+                $total += $producto->price;
             }
             echo '₡' . $total;
         ?>
