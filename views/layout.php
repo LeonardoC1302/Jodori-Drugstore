@@ -31,6 +31,11 @@
         </div>
     </header>
 
+    <?php
+    {
+        $page = $page ??"";
+    }
+    ?>
     <nav class="navegacion">
         <a <?php if ($page == 'inicio') { echo 'class="active"'; } ?> href="/">
         Inicio</a>
