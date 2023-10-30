@@ -142,8 +142,15 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`sales` (
   `monto` DECIMAL(10,2) NOT NULL,
   `fecha` DATETIME NOT NULL,
   `discount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `userId` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `ventasID_UNIQUE` (`id` ASC) VISIBLE)
+  UNIQUE INDEX `ventasID_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `fk_sales_users1_idx` (`userId` ASC) VISIBLE,
+  CONSTRAINT `fk_sales_users1`
+    FOREIGN KEY (`userId`)
+    REFERENCES `farmacia_jodori`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
