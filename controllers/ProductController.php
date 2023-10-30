@@ -5,6 +5,7 @@ use MVC\Router;
 use Model\Producto;
 use Model\Categorias;
 use Model\Usuario;
+use Model\Sale;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductController {
@@ -115,7 +116,13 @@ class ProductController {
 
     public static function reporte(Router $router){
         isAdmin();
+        $sales = Sale::all();
+        $products = Producto::all();
+        $users = Usuario::all();
         $router->render('admin/reporte', [
+            'sales' => $sales,
+            'products' => $products,
+            'users' => $users
         ]);
     }
 }
