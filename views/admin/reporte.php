@@ -1,14 +1,14 @@
 <div class="datos">
     <div class="dato">
-        <p>Productos en Inventario <span>110</span></p>
+        <p>Productos en Inventario <span><?php echo count($products); ?></span></p>
     </div>
 
     <div class="dato">
-        <p>Clientes Registrados <span>250</span></p>
+        <p>Clientes Registrados <span><?php echo count($users); ?></span></p>
     </div>
 
     <div class="dato">
-        <p>Total de Ventas <span>175</span></p>
+        <p>Total de Ventas <span><?php echo count($sales); ?></span></p>
     </div>
 
     <div class="dato">
@@ -16,7 +16,15 @@
     </div>
 
     <div class="dato">
-        <p>Ganancias Totales <span>₡1.205.340</span></p>
+        <p>Ganancias Totales <span>₡
+            <?php
+                $total = 0;
+                foreach($sales as $sale){
+                    $total += $sale->monto;
+                }
+                echo $total;
+            ?>
+        </span></p>
     </div>
 </div>
 
