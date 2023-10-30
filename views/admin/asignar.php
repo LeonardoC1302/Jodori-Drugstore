@@ -1,5 +1,5 @@
 <div class="actions">
-    <a href="/admin" class="orange-btn">Volever al Panel</a>
+    <a href="/admin" class="orange-btn">Volver al Panel</a>
 </div>
 
 <h1>Usuarios Activos</h1>
