@@ -4,6 +4,7 @@ namespace Controllers;
 use MVC\Router;
 use Model\Producto;
 use Model\Categorias;
+use Model\Usuario;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductController {
@@ -43,7 +44,6 @@ class ProductController {
             'producto' => $producto
         ]);
     }
-    //Confirmacion de Agregar Producto
 
     public static function actualizar(Router $router){
         isAdmin();
@@ -80,7 +80,6 @@ class ProductController {
             'categorias' => $categorias
         ]);
     }
-    //Confirmacion de actualizar producto
 
     public static function eliminar(Router $router){
         isAdmin();
@@ -92,7 +91,27 @@ class ProductController {
         }
         header('Location: /admin');
     }
-    //falta una confirmacion de eliminar producto
+
+    public static function asignar(Router $router){
+        isAdmin();
+        $current = $_SESSION['userId'];
+        $usuarios = Usuario::all();
+        $router->render('admin/asignar', [
+            'usuarios' => $usuarios,
+            'current' => $current
+        ]);
+    }
+
+    public static function asignarAdmin(Router $router){
+        isAdmin();
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $id = $_POST['id'];
+            $usuario = Usuario::find($id); 
+            $usuario->sincronizar($_POST);
+            $usuario->guardar();
+        }
+        header('Location: /admin/asignar');
+    }
 
     public static function reporte(Router $router){
         isAdmin();

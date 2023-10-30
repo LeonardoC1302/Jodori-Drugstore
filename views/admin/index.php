@@ -1,6 +1,7 @@
 <div class="actions">
     <a href="/admin/crear" class="orange-btn">Nuevo Producto</a>
-    <a href="/admin/reporte" class="blue-btn">Generar Reporte</a>
+    <a href="/admin/asignar" class="blue-btn">Asginar Admin.</a>
+    <a href="/admin/reporte" class="orange-btn">Generar Reporte</a>
 </div>
 
 <h1>Productos</h1>
