@@ -41,7 +41,14 @@
             <td><img src="/images/<?php echo $prod->imagen ?>" alt="Table Image" class="table-image"></td>
             <td>₡<?php echo $prod->price ?></td>
             <td> <?php echo $prod->cantidad ?> </td>
-            <td><?php echo $prod->categoryID ?></td>
+            <td>
+                <?php foreach($categorias as $categoria){
+                    if($categoria->id == $prod->categoryID){
+                        echo $categoria->tipo;
+                    }
+                }
+                ?>
+            </td>
             <td>
                 <form method="POST" class="w-100" action="/admin/eliminar">
                     <input type="hidden" name="id" value="<?php echo $prod->id ?>">

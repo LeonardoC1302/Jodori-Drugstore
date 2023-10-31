@@ -17,8 +17,11 @@ class ProductController {
         $error = $_GET['error'] ?? null;
 
         $productos = Producto::all();
+        $categorias = Categorias::all();
+
         $router->render('admin/index', [
             'productos' => $productos,
+            'categorias' => $categorias,
             'result' => $result,
             'error' => $error,
             'page' => 'admin'
