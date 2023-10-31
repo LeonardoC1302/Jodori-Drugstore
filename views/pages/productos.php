@@ -3,7 +3,7 @@
     <?php foreach($productos as $producto) { ?>
         <div class="product">
             <div class="product-image">
-                <img src="/images/<?php echo $producto->imagen?>" alt="Imagen del Anuncio">
+                <img src="/images/<?php echo $producto->imagen?>" alt="Imagen del Anuncio" style="display: block; margin: 0 auto;">
             </div>
             <p> <?php echo $producto->name; ?> </p>
             <p class="precio">₡<?php echo $producto->price; ?> I.V.A.I</p>
