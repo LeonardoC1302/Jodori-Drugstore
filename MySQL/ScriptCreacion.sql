@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`users` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `userID_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 13
+AUTO_INCREMENT = 17
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -56,20 +56,21 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`cart` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `userId` INT NOT NULL,
+  `userID` INT NOT NULL,
   `active` TINYINT NOT NULL,
-  `promotionID` INT NULL,
+  `promotionID` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `cartID_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_cart_users1_idx` (`userId` ASC) VISIBLE,
+  INDEX `fk_cart_users1_idx` (`userID` ASC) VISIBLE,
   INDEX `fk_cart_promotions1_idx` (`promotionID` ASC) VISIBLE,
   CONSTRAINT `fk_cart_promotions1`
     FOREIGN KEY (`promotionID`)
     REFERENCES `farmacia_jodori`.`promotions` (`id`),
   CONSTRAINT `fk_cart_users1`
-    FOREIGN KEY (`userId`)
+    FOREIGN KEY (`userID`)
     REFERENCES `farmacia_jodori`.`users` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -82,7 +83,10 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`categories` (
   `tipo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
@@ -101,11 +105,9 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`products` (
   INDEX `fk_products_categories1_idx` (`categoryID` ASC) VISIBLE,
   CONSTRAINT `fk_products_categories1`
     FOREIGN KEY (`categoryID`)
-    REFERENCES `farmacia_jodori`.`categories` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `farmacia_jodori`.`categories` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 13
+AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -129,6 +131,7 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`productsxcart` (
     FOREIGN KEY (`productID`)
     REFERENCES `farmacia_jodori`.`products` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 51
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -142,16 +145,15 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`sales` (
   `monto` DECIMAL(10,2) NOT NULL,
   `fecha` DATETIME NOT NULL,
   `discount` DECIMAL(10,2) NULL DEFAULT NULL,
-  `userId` INT NULL,
+  `userId` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `ventasID_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_sales_users1_idx` (`userId` ASC) VISIBLE,
-  CONSTRAINT `fk_sales_users1`
+  INDEX `userId_idx` (`userId` ASC) VISIBLE,
+  CONSTRAINT `userId`
     FOREIGN KEY (`userId`)
-    REFERENCES `farmacia_jodori`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `farmacia_jodori`.`users` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 22
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -160,10 +162,12 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `farmacia_jodori`.`productsxsale`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`productsxsale` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `salesID` INT NOT NULL,
   `productID` INT NOT NULL,
   `quantity` INT NOT NULL,
-  PRIMARY KEY (`salesID`, `productID`),
+  `price` DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (`id`),
   INDEX `fk_sales_has_products_products1_idx` (`productID` ASC) VISIBLE,
   INDEX `fk_sales_has_products_sales1_idx` (`salesID` ASC) VISIBLE,
   CONSTRAINT `fk_sales_has_products_products1`
@@ -173,6 +177,7 @@ CREATE TABLE IF NOT EXISTS `farmacia_jodori`.`productsxsale` (
     FOREIGN KEY (`salesID`)
     REFERENCES `farmacia_jodori`.`sales` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 29
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
