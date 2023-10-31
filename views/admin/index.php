@@ -53,9 +53,9 @@
                 <form method="POST" class="w-100" action="/admin/eliminar">
                     <input type="hidden" name="id" value="<?php echo $prod->id ?>">
                     <input type="hidden" name="type" value="producto">
-                    <input type="submit" class="red-btn-block" value="Eliminar"onclick="return confirm('Está seguro que quiere eliminar este producto')">
+                    <input type="submit" class="icon-delete" value="&#128465;"onclick="return confirm('Está seguro que quiere eliminar este producto')">
                 </form>
-                <a href="/admin/actualizar?id=<?php echo $prod->id; ?>" class="blue-btn">Actualizar</a>
+                <a href="/admin/actualizar?id=<?php echo $prod->id; ?>" class="icon-update">&#9998;</a>
             </td>
         </tr>
         <?php } ?>
