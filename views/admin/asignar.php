@@ -1,3 +1,13 @@
+<?php
+    if($result){
+        $message = showNotification(intval($result));
+        if($message) { ?>
+            <p class='alert success'> <?php echo s($message) ?> </p>;
+        <?php }
+    }
+?>
+
+
 <div class="actions">
     <a href="/admin" class="orange-btn">Volver al Panel</a>
 </div>

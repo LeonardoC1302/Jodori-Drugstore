@@ -7,13 +7,21 @@ use Model\Categorias;
 use Model\Usuario;
 use Model\Sale;
 use Intervention\Image\ImageManagerStatic as Image;
+use Model\productsxcart;
+use Model\productsxsale;
 
 class ProductController {
     public static function index(Router $router){
         isAdmin();
+        $result = $_GET['result'] ?? null;
+        $error = $_GET['error'] ?? null;
+
         $productos = Producto::all();
         $router->render('admin/index', [
-            'productos' => $productos
+            'productos' => $productos,
+            'result' => $result,
+            'error' => $error,
+            'page' => 'admin'
         ]);
     }
     
@@ -36,7 +44,7 @@ class ProductController {
                 }
                 $image->save(IMAGES_DIR . $imageName);
                 $producto->guardar();
-                header('Location: /admin');
+                header('Location: /admin?result=1');
             }
         }
         $router->render('admin/crear', [
@@ -71,7 +79,7 @@ class ProductController {
             $alertas = array_merge($alertas, $producto->validateCant());
             if(empty($alertas)){
                 $producto->guardar();
-                header('Location: /admin');
+                header('Location: /admin?result=2');
             }
         }
 
@@ -88,18 +96,40 @@ class ProductController {
             //debuguear($_POST['id']);
             $id = $_POST['id'];
             $producto = Producto::find($id); 
-            $producto->eliminar();
+            $valid = true;
+
+            $productosCart = productsxcart::all();
+            foreach($productosCart as $prod){
+                if($prod->productID == $id){
+                    $valid = false;
+                }
+            }
+
+            $productsSale = productsxsale::all();
+            foreach($productsSale as $prod){
+                if($prod->productID == $id){
+                    $valid = false;
+                }
+            }
+            if($valid){
+                $producto->eliminar();
+                header('Location: /admin?result=3');
+            }else{
+                header('Location: /admin?error=1');
+            }
         }
-        header('Location: /admin');
     }
 
     public static function asignar(Router $router){
         isAdmin();
+        $result = $_GET['result'] ?? null;
+
         $current = $_SESSION['userId'];
         $usuarios = Usuario::all();
         $router->render('admin/asignar', [
             'usuarios' => $usuarios,
-            'current' => $current
+            'current' => $current,
+            'result' => $result
         ]);
     }
 
@@ -111,7 +141,7 @@ class ProductController {
             $usuario->sincronizar($_POST);
             $usuario->guardar();
         }
-        header('Location: /admin/asignar');
+        header('Location: /admin/asignar?result=4');
     }
 
     public static function reporte(Router $router){

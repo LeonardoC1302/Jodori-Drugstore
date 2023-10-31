@@ -20,4 +20,10 @@ class Sale extends ActiveRecord{
         $this->discount = $args['discount'] ?? '';
         $this->userId = $args['userId'] ?? null;
     }
+
+    public function removeUser(){
+        $query = "UPDATE " . static::$tabla . " SET userId = null WHERE id = " . $this->id;
+        $result = self::$db->query($query);
+        return $result;
+    }
 }

@@ -24,6 +24,9 @@ class PagesController {
         $cart = Cart::where('userId', $_SESSION['userId']);
         $productsXcart = productsxcart::whereAll('cartID', $cart->id);
 
+        $result = $_GET['result'] ?? null;
+        $error = $_GET['error'] ?? null;
+
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if($_POST['type'] === 'quitar'){
                 $product = productsxcart::where('productID', $_POST['id']);
@@ -37,10 +40,13 @@ class PagesController {
                 header('Location: /carrito');
             } else{
                 $monto = 0;
-                $products = [];
                 foreach($productsXcart as $productXcart){
                     $monto += $productXcart->price;
                 }
+                if($monto == 0){
+                    header('Location: /carrito?error=2');
+                }
+                debuguear($monto);
                 $sale = new Sale([
                     'description' => 'Venta de productos',
                     'monto' => $monto,
@@ -59,7 +65,7 @@ class PagesController {
                     $product->eliminar();
                 }
                 
-                header('Location: /');
+                header('Location: /carrito?result=5');
 
             }
         }
@@ -74,7 +80,9 @@ class PagesController {
 
         $router->render('pages/carrito', [
             'productos' => $productos,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'result' => $result,
+            'error' => $error
         ]);
     }
 

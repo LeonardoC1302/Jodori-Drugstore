@@ -45,6 +45,10 @@
         Categorías</a>
         <a <?php if ($page == 'contacto') { echo 'class="active"'; } ?> href="/contacto">
         Contacto</a>
+        <?php if(isset($_SESSION['admin'])) { ?>
+            <a <?php if ($page == 'admin') { echo 'class="active"'; } ?> href="/admin">
+            Admin</a>
+        <?php } ?>
         <!-- Hacer icono de admin cuando esta logueado con admin -->
     </nav>
 
@@ -56,6 +60,6 @@
         </div>
     </footer>
     
-    <script src='build/js/app.js'></script>
+    <script src='/build/js/app.js'></script>
 </body>
 </html>

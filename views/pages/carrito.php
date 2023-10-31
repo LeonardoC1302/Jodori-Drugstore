@@ -1,3 +1,18 @@
+<?php
+    if($result){
+        $message = showNotification(intval($result));
+        if($message) { ?>
+            <p class='alert success'> <?php echo s($message) ?> </p>;
+        <?php }
+    }
+    if($error){
+        $error = showErrors(intval($error));
+        if($error) {?>
+            <p class='alert error'> <?php echo s($error) ?> </p>;
+        <?php }
+    }
+?>
+
 <h1>Carrito</h1>
 
 <table class="products cart">

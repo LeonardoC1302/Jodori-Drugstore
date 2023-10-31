@@ -6,6 +6,7 @@ use Model\Usuario;
 use Model\Cart;
 use Classes\Email;
 use Model\productsxcart;
+use Model\Sale;
 
 class LoginController {
     public static function index(Router $router){
@@ -21,7 +22,7 @@ class LoginController {
                 if($user){
                     if($user->verificarPassword($auth->password)){
                         session_start();
-                        $cart = Cart::find($user->id);
+                        $cart = Cart::where('userID', $user->id);
                         if(!$cart){
                             $cart = new Cart(['userId' => $user->id]);
                             $cart->guardar();
@@ -179,11 +180,14 @@ class LoginController {
 
     public static function cuenta(Router $router){
         isAuth();
+        $result = $_GET['result'] ?? null;
+
         $id = $_SESSION['userId'];
         $user = Usuario::find($id);
 
         $router->render('pages/cuenta', [
             'user' => $user,
+            'result' => $result
         ]);
     }
 
@@ -197,7 +201,7 @@ class LoginController {
             $alertas = $user->validateUpdate();
             if(empty($alertas['error'])){
                 $user->guardar();
-                header('Location: /cuenta');
+                header('Location: /cuenta?result=2');
             }
         }
 
@@ -209,6 +213,18 @@ class LoginController {
     public static function eliminarCuenta(Router $router){
         $id = $_SESSION['userId'];
         $user = Usuario::find($id);
+
+        $cart = Cart::where('userId', $id);
+        $products = productsxcart::whereAll('cartID', $cart->id);
+        foreach($products as $product){
+            $product->eliminar();
+        }
+        $cart->eliminar();
+        
+        $sales = Sale::whereAll('userId', $id);
+        foreach($sales as $sale){
+            $sale->removeUser();
+        }
         $user->eliminar();
 
         session_start();

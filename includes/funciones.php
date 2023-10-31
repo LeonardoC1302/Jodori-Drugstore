@@ -45,3 +45,45 @@ function inArray($element, $array){
     }
     return false;
 }
+
+
+function showNotification($code){
+    switch($code){
+        case 1:
+            $message = 'Creado Exitosamente';
+            break;
+        case 2:
+            $message = 'Actualizado Exitosamente';
+            break;
+        case 3:
+            $message = 'Eliminado Exitosamente';
+            break;
+        case 4:
+            $message = 'Permiso Asignado Exitosamente';
+            break;
+        case 5:
+            $message = "Pedido Realizado Exitosamente";
+            break;
+        default:
+            $message = False;
+            break;
+    }
+
+    return $message;
+}
+
+function showErrors($code){
+    switch($code){
+        case 1:
+            $message = 'No se puede eliminar el producto';
+            break;
+        case 2:
+            $message = "No se puede realizar un pedido vacío";
+            break;
+        default:
+            $message = False;
+            break;
+    }
+
+    return $message;
+}
