@@ -26,4 +26,21 @@ class Sale extends ActiveRecord{
         $result = self::$db->query($query);
         return $result;
     }
+
+    public static function getDifference(){
+        $currentMonth = date('n');
+
+        $query = "SELECT COUNT(id) FROM " . static::$tabla . " WHERE MONTH(fecha) = " . $currentMonth;
+        $result = self::$db->query($query);
+
+        $query2 = "SELECT COUNT(id) FROM " . static::$tabla . " WHERE MONTH(fecha) = " . ($currentMonth - 1);
+        $result2 = self::$db->query($query2);
+        $dif = 0;
+        try{
+            $dif = intval($result->fetch_assoc()["COUNT(id)"]) - intval($result2->fetch_assoc()["COUNT(id)"]);
+        } catch(\Exception $e){
+            $dif = 0;
+        }
+        return $dif;
+    }
 }

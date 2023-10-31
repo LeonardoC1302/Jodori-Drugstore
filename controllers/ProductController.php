@@ -149,10 +149,15 @@ class ProductController {
         $sales = Sale::all();
         $products = Producto::all();
         $users = Usuario::all();
+
+        $diferencia = Sale::getDifference();
+
+
         $router->render('admin/reporte', [
             'sales' => $sales,
             'products' => $products,
-            'users' => $users
+            'users' => $users,
+            'diferencia' => $diferencia
         ]);
     }
 }

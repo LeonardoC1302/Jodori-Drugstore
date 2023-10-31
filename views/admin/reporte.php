@@ -12,7 +12,14 @@
     </div>
 
     <div class="dato">
-        <p>Diferencia de Ventas <span>+10</span></p>
+        <p>Diferencia de Ventas <span>
+            <?php 
+            if($diferencia > 0 ){
+                echo '+ ';
+            } 
+            echo $diferencia; 
+            ?>
+        </span></p>
     </div>
 
     <div class="dato">

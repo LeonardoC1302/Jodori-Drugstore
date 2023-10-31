@@ -46,7 +46,6 @@ class PagesController {
                 if($monto == 0){
                     header('Location: /carrito?error=2');
                 }
-                debuguear($monto);
                 $sale = new Sale([
                     'description' => 'Venta de productos',
                     'monto' => $monto,
@@ -98,7 +97,7 @@ class PagesController {
             foreach($products as $product){
                 if($product->productID == $_POST['producto']){
                     $product->quantity += 1;
-                    $product->price += $product->price;
+                    $product->price += Producto::find($_POST['producto'])->price;
                     $product->guardar();
                     $exists = true;
                     break;
