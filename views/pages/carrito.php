@@ -45,7 +45,7 @@
                     <form method="POST" class="w-100" action="carrito">
                         <input type="hidden" name="id" value="<?php echo $producto->id ?>">
                         <input type="hidden" name="type" value="quitar">
-                        <input type="submit" class="red-btn-block" value="Quitar">
+                        <input type="submit" class="icon-delete" value="&#128465;">
                     </form>
                 </td>
             </tr>
