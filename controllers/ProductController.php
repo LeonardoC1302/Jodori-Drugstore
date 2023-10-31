@@ -155,12 +155,15 @@ class ProductController {
 
         $diferencia = Sale::getDifference();
 
+        $data = Sale::getMonthSales();
+
 
         $router->render('admin/reporte', [
             'sales' => $sales,
             'products' => $products,
             'users' => $users,
-            'diferencia' => $diferencia
+            'diferencia' => $diferencia,
+            'data' => $data
         ]);
     }
 }

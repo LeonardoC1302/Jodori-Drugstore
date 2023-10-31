@@ -44,7 +44,9 @@ class PagesController {
                     $monto += $productXcart->price;
                 }
                 if($monto == 0){
+                    // debuguear($monto);
                     header('Location: /carrito?error=2');
+                    return;
                 }
                 $sale = new Sale([
                     'description' => 'Venta de productos',

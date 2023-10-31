@@ -43,4 +43,43 @@ class Sale extends ActiveRecord{
         }
         return $dif;
     }
+
+
+    public static function getMonthSales(){
+        $query = "SELECT MONTHS.month AS mes, IFNULL(SUM(sales.monto), 0) AS total
+            FROM (
+            SELECT 1 AS month
+            UNION SELECT 2
+            UNION SELECT 3
+            UNION SELECT 4
+            UNION SELECT 5
+            UNION SELECT 6
+            UNION SELECT 7
+            UNION SELECT 8
+            UNION SELECT 9
+            UNION SELECT 10
+            UNION SELECT 11
+            UNION SELECT 12
+        ) AS MONTHS
+        LEFT JOIN (
+            SELECT MONTH(fecha) AS mes, SUM(monto) AS monto
+            FROM sales
+            WHERE YEAR(fecha) = 2023
+            GROUP BY mes
+        ) AS sales ON MONTHS.month = sales.mes
+        GROUP BY MONTHS.month
+        ORDER BY MONTHS.month";
+        $result = self::$db->query($query);
+
+        $data = array();
+        while ($row = $result->fetch_assoc()) {
+            $mes = $row['mes'];
+            $total = $row['total'];
+
+            $data[] = array("mes" => $mes, "total" => $total);
+        }
+
+        return $data;
+
+    }
 }
