@@ -23,9 +23,21 @@
     font-size: 2.5rem;
     display: block;
 }
+
+.reporte-volver{
+    margin: 0 auto 0 3rem;
+}
+
 .reporte{
     padding: 0 3rem;
-    margin: 2rem 0 auto 0
+    margin: 2rem 0 auto 0;
+    // display: flex;
+    // justify-content: space-between;
+    // gap: 5rem;
+    .orange-btn{
+        // place at the bottom
+        margin-top: auto;
+    }
     h1{
         font-size: 2.5rem;
         display: block;

@@ -1,5 +1,5 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
-
+<a class='orange-btn reporte-volver' href="\admin">Volver Al Panel</a>
 <div class="datos">
     <div class="dato">
         <p>Productos en Inventario <span><?php echo count($products); ?></span></p>
@@ -41,6 +41,7 @@
     
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <div id="container" class="grafico-reporte"></div>
+    
 
     <script>
         Highcharts.chart('container', {
